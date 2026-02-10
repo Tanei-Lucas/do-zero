@@ -1,9 +1,12 @@
-import {  iProductsRepository} from "../repositories/IproductsRepository";
+import { iProductsRepository } from "../repositories/IproductsRepository"
 import { CreateProductUseCase } from "./createProductUsecase";
 import { createProductController } from "./CreateProductController";
 
-const ProductsRepository = new iProductsRepository ();
-const createProductUseCase = new CreateProductUseCase(ProductsRepository);
-const CreateProductController = new createProductController(createProductUseCase);
 
-export { createProductController }
+const productsRepository = new iProductsRepository();
+
+const createProductUseCase = new CreateProductUseCase(productsRepository);
+
+const createProductControllerInstance = new createProductController(createProductUseCase);
+
+export { createProductControllerInstance as createProductController };

@@ -1,10 +1,10 @@
 import "reflect-metadata";
-import { Express } from "express";
+import express, { Request, Response, NextFunction } from "express"; 
 import { productRouter } from "./routes/product.routes";
 
-const app = expless();
+const app = express();
 
-app.use = express.json();
+app.use(express.json());
 
 app.use("/products", productRouter);
 

@@ -26,6 +26,10 @@ export class iProductsRepository implements productsRepository {
 
   async findByName(nome: string): Promise<Product | undefined> {
     const product = this.products.find((p) => p.nome === nome);
-    return product;
+    return product; }
+
+  async list(): Promise<Product[]> {
+    return this.products;
   }
 }
+  
