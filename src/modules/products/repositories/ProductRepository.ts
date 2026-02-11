@@ -1,13 +1,13 @@
 import {Product} from "../entities/products";
 import { ICreateProductDTO } from "../dtos/ICreateProductDTO";
 
-export interface productsRepository {
+export interface IProductRepository {
     create(data: ICreateProductDTO): Promise<Product>;
     findByName(nome:string): Promise<Product | undefined>;
 }
 
 
-export class iProductsRepository implements productsRepository {
+export class ProductRepository implements IProductRepository {
   private products: Product[] = [];
 
   async create({ nome, preco }: ICreateProductDTO): Promise<Product> {

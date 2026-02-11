@@ -1,4 +1,4 @@
-import {  iProductsRepository } from "../../repositories/IproductsRepository";
+import {  iProductsRepository } from "../../repositories/ProductRepository";
 import { Product } from "../../entities/products";
 
 export class ListProductsUseCase {

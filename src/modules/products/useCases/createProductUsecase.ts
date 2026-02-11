@@ -1,16 +1,17 @@
-import { IproductsRepository } from "../repositories/IproductsRepository";
+import { ProductRepository } from "../repositories/ProductRepository";
 import { ICreateProductDTO } from "../dtos/ICreateProductDTO";
 
 export class CreateProductUseCase {
-  constructor(private productsRepository: IproductsRepository) {}
+  constructor() {}
 
   async execute({ nome, preco }: ICreateProductDTO): Promise<void> {
-    const productAlreadyExists = await this.productsRepository.findByName(nome);
+    const productRepository = new ProductRepository()
+    const productAlreadyExists = await productRepository.findByName(nome);
 
     if (productAlreadyExists) {
       throw new Error("Product already exists!");
     }
-
-    await this.productsRepository.create({ nome, preco });
+    
+   await productRepository.create({ nome, preco });
   }
 }
