@@ -1,6 +1,8 @@
 import {Product} from "../entities/Product";
 import { ICreateProductDTO } from "../dtos/ICreateProductDTO";
 import { AppDataSource } from "../../../shared/infra/typeorm";
+import { promises } from "dns";
+import { IFilterProductsDTO } from "../dtos/IFilterProductsDTO";
 
 export interface IProductRepository {
     create(data: ICreateProductDTO): Promise<Product>;
@@ -19,6 +21,18 @@ export class ProductRepository implements IProductRepository {
     const product = await this.productRepository.findOneBy({nome});
     return product;
   }
-}
+
+   async findAll({nome, preco}:IFilterProductsDTO):Promise<Product[]>{
+    return await this.productRepository.find({
+      where:{
+        nome: nome,
+        preco: preco,
+      }
+    })
+  }
+
+  
+  }
+
 
   
