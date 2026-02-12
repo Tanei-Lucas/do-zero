@@ -31,6 +31,12 @@ export class ProductRepository implements IProductRepository {
     })
   }
 
+  async findById(id:number):Promise<Product | null>{
+    return await this.productRepository.findOneBy({id});
+  }
+
+  
+
   
   }
 

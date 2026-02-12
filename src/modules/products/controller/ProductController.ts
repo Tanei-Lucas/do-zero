@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { CreateProductUseCase } from "../useCases/createProductUsecase";
 import { FindAllProductUseCase } from "../useCases/FindAllProductsUseCase";
 import { IFilterProductsDTO } from "../dtos/IFilterProductsDTO";
+import { FindByIdProductUseCase } from "../useCases/FindbyIdProductUseCase";
 
 export class ProductController {
 
@@ -19,5 +20,12 @@ export class ProductController {
         const findAllProductUseCase = new FindAllProductUseCase()
         const findProductAll = await findAllProductUseCase.execute({nome, preco});
         return response.status(201).json(findProductAll);
+    }
+
+    async findById(request: Request, response: Response): Promise<Response> {
+        const {id} = request.params 
+        const  findByIdProductUseCase = new FindByIdProductUseCase()
+        const product = await findByIdProductUseCase.execute(Number(id));
+        return response.status(201).json(product);
     }
 }

@@ -9,4 +9,6 @@ productRouter.post("/", productController.create);
 
 productRouter.get("/", productController.findAll);
 
+productRouter.get("/:id", productController.findById);
+
 export {productRouter}
