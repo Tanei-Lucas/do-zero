@@ -3,9 +3,11 @@ import { CreateProductUseCase } from "../useCases/createProductUsecase";
 import { FindAllProductUseCase } from "../useCases/FindAllProductsUseCase";
 import { IFilterProductsDTO } from "../dtos/IFilterProductsDTO";
 import { FindByIdProductUseCase } from "../useCases/FindbyIdProductUseCase";
+import {DeleteProductByIdUseCase} from"../useCases/DeleteProductByIdUseCase";
+import { promises } from "dns";
+
 
 export class ProductController {
-
     async create(request: Request, response: Response): Promise<Response> {
         const { nome, preco } = request.body;
         const createProductUseCase = new CreateProductUseCase()
@@ -28,4 +30,12 @@ export class ProductController {
         const product = await findByIdProductUseCase.execute(Number(id));
         return response.status(201).json(product);
     }
+
+    async delete(request: Request, response: Response):Promise<Response>{
+        const {id} = request.params;
+        const deleteProductByIdUseCase = new DeleteProductByIdUseCase;
+        await deleteProductByIdUseCase.execute(Number(id));
+        return response.status(204).json()
+    }
+
 }

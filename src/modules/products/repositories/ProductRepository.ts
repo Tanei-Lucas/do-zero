@@ -35,8 +35,9 @@ export class ProductRepository implements IProductRepository {
     return await this.productRepository.findOneBy({id});
   }
 
-  
-
+  async delete(id:number):Promise<void>{
+    await this.productRepository.delete({id});
+  }
   
   }
 
