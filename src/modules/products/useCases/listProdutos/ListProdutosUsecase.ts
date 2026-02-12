@@ -1,5 +1,5 @@
 import {  iProductsRepository } from "../../repositories/ProductRepository";
-import { Product } from "../../entities/products";
+import { Product } from "../../entities/Product";
 
 export class ListProductsUseCase {
   constructor(private productsRepository: iProductsRepository) {}

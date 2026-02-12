@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
-  },
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:add": "npm run typeorm migration:generate -- -d ./src/shared/infra/typeorm/index.ts",
+    "migration:run": "npm run typeorm migration:run -- -d ./src/shared/infra/typeorm/index.ts",
+    "migration:revert": "npm run typeorm migration:revert -- -d ./src/shared/infra/typeorm/index.ts"
+},
   "dependencies": {
     "express": "^5.2.1",
     "pg": "^8.17.2",

@@ -6,9 +6,9 @@ export class CreateProductController {
     async handle(request:Request, response:Response): Promise<Response>{ 
     const {nome, preco} = request.body;
     const createProductUseCase = new CreateProductUseCase()
-    await createProductUseCase.execute({ nome, preco });
+const createdProduct = await createProductUseCase.execute({ nome, preco });
 
-    return response.status(201).send();
+    return response.status(201).json(createdProduct);
 
     }
 }
