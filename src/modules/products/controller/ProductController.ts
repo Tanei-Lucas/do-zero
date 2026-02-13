@@ -1,15 +1,18 @@
 import { Request, Response } from "express";
-import { CreateProductUseCase } from "../useCases/createProductUsecase";
-import { FindAllProductUseCase } from "../useCases/FindAllProductsUseCase";
-import { IFilterProductsDTO } from "../dtos/IFilterProductsDTO";
-import { FindByIdProductUseCase } from "../useCases/FindByIdProductUseCase"
-import {DeleteProductByIdUseCase} from"../useCases/DeleteProductByIdUseCase"
-import { UpdateByProductUseCase } from "../useCases/UpdateByProductUseCase";
+import { CreateProductUseCase } from "../useCases/Product/createProductUsecase";
+import { FindAllProductUseCase } from "../useCases/Product/FindAllProductsUseCase";
+import { IFilterProductsDTO } from "../dtos/Product/IFilterProductsDTO";
+import { FindByIdProductUseCase } from "../useCases/Product/FindByIdProductUseCase";
+import {DeleteProductByIdUseCase} from"../useCases/Product/DeleteProductByIdUseCase";
+import { UpdateByProductUseCase } from "../useCases/Product/UpdateByProductUseCase";
 
 export class ProductController {
     async create(request: Request, response: Response): Promise<Response> {
+
         const { nome, preco } = request.body;
+
         const createProductUseCase = new CreateProductUseCase()
+
         const createdProduct = await createProductUseCase.execute({ nome, preco });
 
         return response.status(201).json(createdProduct);
@@ -17,16 +20,24 @@ export class ProductController {
     }
 
     async findAll(request: Request, response: Response): Promise<Response> {
+
         const {nome, preco} = request.query as unknown as IFilterProductsDTO
+
         const findAllProductUseCase = new FindAllProductUseCase()
+
         const findProductAll = await findAllProductUseCase.execute({nome, preco});
+
         return response.status(201).json(findProductAll);
     }
 
     async findById(request: Request, response: Response): Promise<Response> {
+
         const {id} = request.params 
+
         const  findByIdProductUseCase = new FindByIdProductUseCase()
+
         const product = await findByIdProductUseCase.execute(Number(id));
+        
         return response.status(201).json(product);
     }
 

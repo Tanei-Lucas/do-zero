@@ -1,4 +1,4 @@
-import { ProductRepository } from "../repositories/ProductRepository";
+import { ProductRepository } from "../../repositories/ProductRepository"
 
 export class DeleteProductByIdUseCase {
     async execute(id: number){

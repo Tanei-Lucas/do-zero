@@ -1,5 +1,5 @@
-import { ProductRepository } from "../repositories/ProductRepository";
-import { ICreateProductDTO } from "../dtos/ICreateProductDTO";
+import { ProductRepository } from "../../repositories/ProductRepository";
+import { ICreateProductDTO } from "../../dtos/Product/ICreateProductDTO";
 
 export class CreateProductUseCase {
   constructor() {}

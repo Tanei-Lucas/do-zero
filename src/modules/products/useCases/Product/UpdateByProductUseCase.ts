@@ -1,5 +1,5 @@
-import { ProductRepository } from "../repositories/ProductRepository";
-import { IUpdateByProductDTO } from "../dtos/IUpdateByProductDTO"
+import { ProductRepository } from "../../repositories/ProductRepository";
+import { IUpdateByProductDTO } from "../../dtos/Product/IUpdateByProductDTO"
 
 export class UpdateByProductUseCase {
     async execute({ id, nome, preco }: IUpdateByProductDTO) {
