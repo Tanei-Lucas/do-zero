@@ -2,10 +2,9 @@ import { Request, Response } from "express";
 import { CreateProductUseCase } from "../useCases/createProductUsecase";
 import { FindAllProductUseCase } from "../useCases/FindAllProductsUseCase";
 import { IFilterProductsDTO } from "../dtos/IFilterProductsDTO";
-import { FindByIdProductUseCase } from "../useCases/FindbyIdProductUseCase";
-import {DeleteProductByIdUseCase} from"../useCases/DeleteProductByIdUseCase";
-import { promises } from "dns";
-
+import { FindByIdProductUseCase } from "../useCases/FindByIdProductUseCase"
+import {DeleteProductByIdUseCase} from"../useCases/DeleteProductByIdUseCase"
+import { UpdateByProductUseCase } from "../useCases/UpdateByProductUseCase";
 
 export class ProductController {
     async create(request: Request, response: Response): Promise<Response> {
@@ -36,6 +35,14 @@ export class ProductController {
         const deleteProductByIdUseCase = new DeleteProductByIdUseCase;
         await deleteProductByIdUseCase.execute(Number(id));
         return response.status(204).json()
+    }
+
+    async update(request: Request, response: Response):Promise<Response>{
+        const {id} = request.params as {id : string}
+        const {nome, preco} = request.body;
+        const updateByProductUseCase = new UpdateByProductUseCase;
+        await updateByProductUseCase.execute({ id, nome, preco} )
+        return response.status(204).send()
     }
 
 }

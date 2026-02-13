@@ -13,4 +13,6 @@ productRouter.get("/:id", productController.findById);
 
 productRouter.delete("/:id", productController.delete);
 
+productRouter.put("/:id", productController.update);
+
 export {productRouter}

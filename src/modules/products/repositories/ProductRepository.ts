@@ -3,6 +3,7 @@ import { ICreateProductDTO } from "../dtos/ICreateProductDTO";
 import { AppDataSource } from "../../../shared/infra/typeorm";
 import { promises } from "dns";
 import { IFilterProductsDTO } from "../dtos/IFilterProductsDTO";
+import { IUpdateByProductDTO } from "../dtos/IUpdateByProductDTO";
 
 export interface IProductRepository {
     create(data: ICreateProductDTO): Promise<Product>;
@@ -38,8 +39,11 @@ export class ProductRepository implements IProductRepository {
   async delete(id:number):Promise<void>{
     await this.productRepository.delete({id});
   }
-  
-  }
 
+  async update({id, nome, preco}:IUpdateByProductDTO):Promise<void>{
+    await this.productRepository.update(id, { nome, preco});
+    
+  }
+}
 
   
