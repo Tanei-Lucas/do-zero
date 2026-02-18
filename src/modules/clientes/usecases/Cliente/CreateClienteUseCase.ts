@@ -9,8 +9,9 @@ export class CreateClienteUseCase {
         const clienteRepository = new ClienteRepository();
 
         const countByNome = await clienteRepository.countByFilters({
-          nome: data.nome,
+          nome: data.nome
         });
+
         if (countByNome !== 0) {
           throw new Error("Cliente já existe!");
         }
@@ -18,6 +19,7 @@ export class CreateClienteUseCase {
          const countByEmail = await clienteRepository.countByFilters({
           email: data.email,
         });
+
         if(countByEmail !== 0){
            throw new Error("Email já existe!");
         }
@@ -33,9 +35,10 @@ export class CreateClienteUseCase {
         if(cpfWithoutSpecialChars.length !== 11){
            throw new Error("Cpf deve conter 11 numeros!");
         }
-
-        if(!isValid(data.data_nascimento)) {
+        
+        if(!isValid(new Date(data.data_nascimento))) {
         throw new Error("Data de nascimento inválida!");
+       
 }
         
        const createdCliente = await clienteRepository.create({
