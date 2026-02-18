@@ -30,8 +30,9 @@ export class Cliente{
     @Column()   
     numero: string;
 
-    @Column()
+    @Column({ type: "varchar", nullable: true })
     compremento?: string;
+
 
     @Column()
     bairro: string;
