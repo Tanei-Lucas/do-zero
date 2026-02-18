@@ -1,12 +1,11 @@
-import { ICreateClienteDTO } from "../../../clientes/dtos/Cliente/ICreateClienteDTO";
+
 import { ClienteRepository } from "../../repositories/ClienteRepository";
-import { IFilterClienteDTO } from "../../../clientes/dtos/Cliente/IFilterClienteDTO";
-import { IFilterAllClienteDTO } from "../../../clientes/dtos/Cliente/IFilterAllClienteDTO";
+import { ICreateClienteDTO } from "../../dtos/Cliente/ICreateClienteDTO";
 
 export class FindAllClienteUseCase{
-    async execute ({nome}:IFilterAllClienteDTO){
+    async execute (data: ICreateClienteDTO){
         const clienteRepository = new ClienteRepository();
-        const clienteList = await clienteRepository.findAll(nome);
+        const clienteList = await clienteRepository.findAll(data);
 return clienteList;
         
     }
