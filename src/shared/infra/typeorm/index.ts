@@ -2,7 +2,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 
 const prefixFolder = 'src';
 
-// Removido o ";" que estava dentro da string abaixo
+
 const entitiesFolder = `${prefixFolder}/**/entities/**/*{.ts,.js}`;
 const migrationsFolder = `${prefixFolder}/shared/infra/typeorm/migrations/**/*{.ts,.js}`;
 
@@ -13,7 +13,7 @@ export const options: DataSourceOptions = {
   username: process.env.DB_USER ?? "postgres",
   password: process.env.DB_PASS ?? "1234",
   database: process.env.DB_NAME ?? "products",
-  logging: true, // Mudei para true temporariamente para você ver as queries no terminal
+  logging: true, 
   entities: [entitiesFolder],
   migrations: [migrationsFolder],
 };
