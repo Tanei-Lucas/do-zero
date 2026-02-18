@@ -1,7 +1,7 @@
-import { ICreateClienteDTO } from "../../dtos/Cliente/ICreateClienteDTO";
+import { ICreateClienteDTO } from "../../../clientes/dtos/Cliente/ICreateClienteDTO";
 import { ClienteRepository } from "../../repositories/ClienteRepository";
-import { IFilterClienteDTO } from "../../dtos/Cliente/IFilterClienteDTO";
-import { IFilterAllClienteDTO } from "../../dtos/Cliente/IFilterAllClienteDTO";
+import { IFilterClienteDTO } from "../../../clientes/dtos/Cliente/IFilterClienteDTO";
+import { IFilterAllClienteDTO } from "../../../clientes/dtos/Cliente/IFilterAllClienteDTO";
 
 export class FindAllClienteUseCase{
     async execute ({nome}:IFilterAllClienteDTO){

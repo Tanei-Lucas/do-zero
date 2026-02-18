@@ -1,6 +1,6 @@
 import { ClienteRepository } from "../../repositories/ClienteRepository";
-import { ICreateClienteDTO } from "../../dtos/Cliente/ICreateClienteDTO";
-import { Cliente } from "../../entities/Cliente";
+import { ICreateClienteDTO } from "../../../clientes/dtos/Cliente/ICreateClienteDTO";
+import { Cliente } from "../../../clientes/entities/Cliente";
 import { removeSpecialChars } from "../../../../shared/utils/removeSpecialChars";
 import {isValid} from "date-fns";
 
