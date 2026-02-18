@@ -1,8 +1,8 @@
-import { Categoria } from "../entities/Categorias";
-import { ICreateCategoriaDTO } from "../dtos/categorias/ICreateCategoriasDTO";
+import { Categoria } from "../../categorias/entities/Categorias";
+import { ICreateCategoriaDTO } from "../../categorias/dtos/categorias/ICreateCategoriasDTO";
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../../shared/infra/typeorm";
-import {IUpdateCategoriaDTO} from "../dtos/categorias/IUpdateCategoriaDTO"
+import {IUpdateCategoriaDTO} from "../../categorias/dtos/categorias/IUpdateCategoriaDTO"
 
 export interface ICategoriaRepository{
     create(data: ICreateCategoriaDTO): Promise<void>;

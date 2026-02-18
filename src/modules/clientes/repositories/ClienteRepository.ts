@@ -1,8 +1,8 @@
-import { Cliente } from "../entities/Cliente";
-import { ICreateClienteDTO } from "../dtos/Cliente/ICreateClienteDTO";
+import { Cliente } from "../../clientes/entities/Cliente";
+import { ICreateClienteDTO } from "../../clientes/dtos/Cliente/ICreateClienteDTO";
 import { AppDataSource } from "../../../shared/infra/typeorm";
-import { UpdateClienteDTO } from "../dtos/Cliente/UpdateClienteDTO";
-import { IFilterClienteDTO } from "../dtos/Cliente/IFilterClienteDTO";
+import { UpdateClienteDTO } from "../../clientes/dtos/Cliente/UpdateClienteDTO";
+import { IFilterClienteDTO } from "../../clientes/dtos/Cliente/IFilterClienteDTO";
 
 export interface IClienteRepository {
   create(data: ICreateClienteDTO): Promise<Cliente>;

@@ -1,8 +1,8 @@
 import { CategoriaRepository } from "../../repositories/CategoriaRepository";
-import { ICreateCategoriaDTO } from "../../dtos/categorias/ICreateCategoriasDTO";
-import { Categoria } from "../../entities/Categorias";
+import { ICreateCategoriaDTO } from "../../../categorias/dtos/categorias/ICreateCategoriasDTO";
+import { Categoria } from "../../../categorias/entities/Categorias";
 import { error } from "console";
-import { Cliente } from "../../entities/Cliente";
+import { Cliente } from "../../../clientes/entities/Cliente";
 
 
 export class CreateCategoriaUseCase{
