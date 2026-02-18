@@ -1,7 +1,7 @@
 import { Cliente } from "../../clientes/entities/Cliente";
 import { ICreateClienteDTO } from "../../clientes/dtos/Cliente/ICreateClienteDTO";
 import { AppDataSource } from "../../../shared/infra/typeorm";
-import { UpdateClienteDTO } from "../../clientes/dtos/Cliente/UpdateClienteDTO";
+import { IUpdateClienteDTO } from "../dtos/Cliente/IUpdateClienteDTO";
 import { IFilterClienteDTO } from "../../clientes/dtos/Cliente/IFilterClienteDTO";
 
 export interface IClienteRepository {
@@ -49,7 +49,7 @@ export class ClienteRepository implements IClienteRepository {
     await this.clienteRepository.delete({ id });
   }
 
-  async update(data: UpdateClienteDTO): Promise<void> {
+  async update(data: IUpdateClienteDTO): Promise<void> {
     await this.clienteRepository.update(data.id, data);
   }
 }

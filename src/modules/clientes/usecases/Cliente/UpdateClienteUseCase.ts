@@ -1,10 +1,10 @@
 import { ClienteRepository } from "../../repositories/ClienteRepository";
-import { UpdateClienteDTO } from "../../../clientes/dtos/Cliente/UpdateClienteDTO";
+import { IUpdateClienteDTO } from "../../dtos/Cliente/IUpdateClienteDTO"
 import { removeSpecialChars } from "../../../../shared/utils/removeSpecialChars";
 import { isValid, parseISO } from "date-fns";
 
 export class UpdateClienteUseCase {
-  async execute(data: UpdateClienteDTO) {
+  async execute(data: IUpdateClienteDTO) {
 
     const clienteRepository = new ClienteRepository();
 
@@ -13,7 +13,6 @@ export class UpdateClienteUseCase {
     if (!cliente) {
       throw new Error("Cliente não encontrado!");
     }
-
 
     if (data.cpf) {
 
@@ -35,7 +34,6 @@ export class UpdateClienteUseCase {
 
       data.cpf = cpfLimpo;
     }
-
 
     if (data.data_nascimento) {
       const dataObjeto = parseISO(

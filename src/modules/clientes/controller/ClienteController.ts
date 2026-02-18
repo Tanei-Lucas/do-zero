@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
-import { CreateClienteUseCase } from "../useCases/Cliente/CreateClienteUseCase";
-import { FindAllClienteUseCase } from "../useCases/Cliente/FindAllClienteUseCase";
+import { CreateClienteUseCase } from "../usecases/Cliente/CreateClienteUseCase";
+import { FindAllClienteUseCase } from "../usecases/Cliente/FindAllClienteUseCase";
+import { FindByIdProductUseCase } from "../../products/useCases/Product/FindByIdProductUseCase";
+import { DeleteClienteByIdUseCase } from "../usecases/Cliente/DeleteClienteUseCase";
+import { UpdateClienteUseCase } from "../usecases/Cliente/UpdateClienteUseCase";
 import { IFilterClienteDTO } from "../dtos/Cliente/IFilterClienteDTO";
-import { FindByIdProductUseCase } from "../useCases/Product/FindByIdProductUseCase";
-import { DeleteClienteByIdUseCase } from "../useCases/Cliente/DeleteClienteUseCase";
-import { UpdateClienteUseCase } from "../useCases/Cliente/UpdateClienteUseCase";
-import { IFilterAllClienteDTO } from "../dtos/Cliente/IFilterAllClienteDTO";
 
 
-export class ClienteController {
+export class ClienteControllerimport { 
+
     async create(request: Request, response: Response): Promise<Response> {
         const data = request.body;
 
@@ -21,7 +21,7 @@ export class ClienteController {
 
     async findAll(request: Request, response: Response): Promise<Response> {
 
-        const {nome} = request.query as unknown as IFilterAllClienteDTO
+        const {nome} = request.query as unknown as IFilterClienteDTO
 
         const findAllCienteUseCase = new FindAllClienteUseCase
         

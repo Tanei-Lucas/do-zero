@@ -31,6 +31,9 @@ export class Cliente{
     numero: string;
 
     @Column()
+    compremento?: string;
+
+    @Column()
     bairro: string;
 
     @Column()

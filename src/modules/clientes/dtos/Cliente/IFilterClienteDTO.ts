@@ -1,5 +1,5 @@
 export interface IFilterClienteDTO{
-    nome?: string,
+    nome: string,
     email?: string,
     cpf?: string,
 }

@@ -17,6 +17,8 @@ export interface ICreateClienteDTO {
 
     numero: string;
 
+    compremento?: string;
+
     bairro: string;
 
     cidade: string;
