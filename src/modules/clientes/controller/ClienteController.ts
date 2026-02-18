@@ -5,6 +5,8 @@ import { FindByIdProductUseCase } from "../../products/useCases/Product/FindById
 import { DeleteClienteByIdUseCase } from "../usecases/Cliente/DeleteClienteUseCase";
 import { UpdateClienteUseCase } from "../usecases/Cliente/UpdateClienteUseCase";
 import { IFilterClienteDTO } from "../dtos/Cliente/IFilterClienteDTO";
+import { ICreateClienteDTO } from "../dtos/Cliente/ICreateClienteDTO";
+import { FindByIdClienteUseCase } from "../usecases/Cliente/FindByIdClienteUseCase";
 
 
 export class ClienteController { 
@@ -21,11 +23,11 @@ export class ClienteController {
 
     async findAll(request: Request, response: Response): Promise<Response> {
 
-        const {nome} = request.query as unknown as IFilterClienteDTO
+        const data = request.query as unknown as ICreateClienteDTO
 
-        const findAllCienteUseCase = new FindAllClienteUseCase
+        const findAllCienteUseCase = new FindAllClienteUseCase()
         
-        const findClienteAll = await findAllCienteUseCase.execute({nome})
+        const findClienteAll = await findAllCienteUseCase.execute(data);
 
         return response.status(200).json(findClienteAll);
     }
@@ -34,7 +36,7 @@ export class ClienteController {
     
             const {id} = request.params 
     
-            const  findByIdClienteUseCase = new FindByIdProductUseCase ()
+            const  findByIdClienteUseCase = new FindByIdClienteUseCase()
     
             const product = await findByIdClienteUseCase.execute(Number(id));
             
