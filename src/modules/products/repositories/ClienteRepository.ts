@@ -1,18 +1,56 @@
 import { Cliente } from "../entities/Cliente";
 import { ICreateClienteDTO } from "../dtos/Cliente/ICreateClienteDTO";
 import { AppDataSource } from "../../../shared/infra/typeorm";
+import { UpdateClienteDTO } from "../dtos/Cliente/UpdateClienteDTO";
+import { IFilterClienteDTO } from "../dtos/Cliente/IFilterClienteDTO";
 
-export interface IClienteRepository{
-    create(data: ICreateClienteDTO): Promise<Cliente>;
+export interface IClienteRepository {
+  create(data: ICreateClienteDTO): Promise<Cliente>;
 }
 
 export class ClienteRepository implements IClienteRepository {
-  private readonly clienteRepository = AppDataSource.getRepository(Cliente)
+  private readonly clienteRepository =
+    AppDataSource.getRepository(Cliente);
+
   async create(data: ICreateClienteDTO): Promise<Cliente> {
-    const createdClientes = this.clienteRepository.create(data)
-    return await this.clienteRepository.save(createdClientes)
+    const cliente = this.clienteRepository.create(data);
+    return await this.clienteRepository.save(cliente);
+  }
+
+  async findById(id: number): Promise<Cliente | null> {
+    return await this.clienteRepository.findOneBy({ id });
+  }
+
+  async countByFilters(data: IFilterClienteDTO) :Promise<number> {
+  const count = await this.clienteRepository.count({
+    where:{
+      nome: data.nome,
+      email: data.email,
+      cpf: data.cpf
+    }
+  })
+  return count
 }
 
 
+  async findByCpf(cpf: string): Promise<Cliente | null> {
+    return await this.clienteRepository.findOne({
+      where: { cpf }
+    });
+  }
 
+  async findAll(nome: string): Promise<Cliente[]> {
+    return await this.clienteRepository.find({
+      where: { nome }
+    });
+  }
+
+  async delete(id: number): Promise<void> {
+    await this.clienteRepository.delete({ id });
+  }
+
+  async update(data: UpdateClienteDTO): Promise<void> {
+    await this.clienteRepository.update(data.id, data);
+  }
 }
+
