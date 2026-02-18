@@ -1,7 +1,7 @@
 import { ClienteRepository } from "../../repositories/ClienteRepository";
 import { IUpdateClienteDTO } from "../../dtos/Cliente/IUpdateClienteDTO"
 import { removeSpecialChars } from "../../../../shared/utils/removeSpecialChars";
-import { isValid, parseISO } from "date-fns";
+import { isValid, parseISO } from "date-fns"
 
 export class UpdateClienteUseCase {
   async execute(data: IUpdateClienteDTO) {

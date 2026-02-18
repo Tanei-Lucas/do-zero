@@ -9,8 +9,9 @@
     "migration:add": "npm run typeorm migration:generate -- -d ./src/shared/infra/typeorm/index.ts",
     "migration:run": "npm run typeorm migration:run -- -d ./src/shared/infra/typeorm/index.ts",
     "migration:revert": "npm run typeorm migration:revert -- -d ./src/shared/infra/typeorm/index.ts"
-},
+  },
   "dependencies": {
+    "date-fns": "^4.1.0",
     "express": "^5.2.1",
     "pg": "^8.17.2",
     "reflect-metadata": "^0.2.2",
