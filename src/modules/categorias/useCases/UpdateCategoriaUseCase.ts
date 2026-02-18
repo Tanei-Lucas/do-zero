@@ -1,5 +1,5 @@
-import { CategoriaRepository } from "../../repositories/CategoriaRepository";
-import { IUpdateCategoriaDTO } from "../../../categorias/dtos/categorias/IUpdateCategoriaDTO";
+import { CategoriaRepository } from "../repositories/CategoriaRepository";
+import { IUpdateCategoriaDTO } from "../dtos/categorias/IUpdateCategoriaDTO";
 
 export class UpdateCategoriaUseCase{
     async execute(id: number, data: IUpdateCategoriaDTO){

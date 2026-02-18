@@ -1,5 +1,4 @@
-import { CategoriaRepository } from "../../repositories/CategoriaRepository";
-import { IFindByCategoriaDTO } from "../../../categorias/dtos/categorias/IFindByIdCategoriaDTO";
+import { CategoriaRepository } from "../repositories/CategoriaRepository"
 
 export class FindByIdCategoriaUseCase{
     async execute(id: number){

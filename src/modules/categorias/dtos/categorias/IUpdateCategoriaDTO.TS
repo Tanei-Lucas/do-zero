@@ -3,6 +3,5 @@ export interface IUpdateCategoriaDTO {
     nome: string;
     descricao?: string; 
     ativo: true; 
-    created_at: Date;
 
 }

@@ -1,9 +1,6 @@
-import { CategoriaRepository } from "../../repositories/CategoriaRepository";
-import { ICreateCategoriaDTO } from "../../../categorias/dtos/categorias/ICreateCategoriasDTO";
-import { Categoria } from "../../../categorias/entities/Categorias";
-import { error } from "console";
-import { Cliente } from "../../../clientes/entities/Cliente";
-
+import { CategoriaRepository } from "../repositories/CategoriaRepository";
+import { ICreateCategoriaDTO } from "../dtos/categorias/ICreateCategoriasDTO";
+import { Categoria } from "../entities/Categorias";
 
 export class CreateCategoriaUseCase{
     async execute(data: ICreateCategoriaDTO): Promise<Categoria | void>{
@@ -17,6 +14,5 @@ export class CreateCategoriaUseCase{
         return await categoriaRepository.create(data)
 
     }
-
 
     }

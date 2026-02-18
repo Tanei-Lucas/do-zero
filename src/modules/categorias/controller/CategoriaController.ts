@@ -1,10 +1,9 @@
-import { CreateCategoriaUseCase } from "../usecases/Categorias/CreateCategoriasUseCase";
+import { CreateCategoriaUseCase } from "../useCases/CreateCategoriasUseCase";
 import { Request, Response } from "express";
-import { ICreateCategoriaDTO } from "../dtos/categorias/ICreateCategoriasDTO";
-import { FindAllCategoriaUseCase } from "../usecases/Categorias/FindAllCategoriaUseCase";
-import { FindByIdCategoriaUseCase } from "../usecases/Categorias/FindByIdCategoriaUseCase";
+import { FindAllCategoriaUseCase } from "../useCases/FindAllCategoriaUseCase";
+import { FindByIdCategoriaUseCase } from "../useCases/FindByIdCategoriaUseCase";
 import { UpdateByProductUseCase } from "../../products/useCases/Product/UpdateByProductUseCase";
-import { DeleteCategoriaUseCase } from "../usecases/Categorias/DeleteCategoriasUseCase";
+import { DeleteCategoriaUseCase } from "../useCases/DeleteCategoriasUseCase";
 
 
 export class CategoriaController{
@@ -38,7 +37,7 @@ export class CategoriaController{
 
         const findIdCategoria = await findByIdCategoriaUseCase.execute(Number(id));
 
-        return response.status(204).json(findIdCategoria); 
+        return response.status(200).json(findIdCategoria); 
     }
 
     async update(request: Request, response: Response): Promise<Response>{

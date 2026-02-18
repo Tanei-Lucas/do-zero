@@ -3,6 +3,5 @@ export interface ICreateCategoriaDTO {
     nome: string;
     descricao?: string; 
     ativo: true; 
-    created_at: Date;
 
 }

@@ -42,7 +42,7 @@ export class CategoriaRepository implements ICategoriaRepository {
     }
 
     async update(id: number, data:IUpdateCategoriaDTO):Promise<void>{
-        await this.repository.update(id, {...data});
+        await this.repository.update(id, data);
     
     }
 

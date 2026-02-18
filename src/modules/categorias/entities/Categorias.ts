@@ -1,19 +1,17 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, } from "typeorm";
 
 @Entity("categorias")
 export class Categoria {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ unique: true })
+    @Column()
     nome: string;
 
-    @Column({ nullable: true })
+    @Column()
     descricao: string;
 
-    @Column({ default: true })
+    @Column()
     ativo: boolean;
 
-    @CreateDateColumn()
-    created_at: Date;
 }

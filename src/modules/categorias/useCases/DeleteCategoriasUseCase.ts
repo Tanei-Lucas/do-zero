@@ -1,4 +1,4 @@
-import { CategoriaRepository } from "../../repositories/CategoriaRepository";
+import { CategoriaRepository } from "../repositories/CategoriaRepository";
 
 export class DeleteCategoriaUseCase{
     async execute(id: number){
