@@ -39,10 +39,10 @@ export class ClienteRepository implements IClienteRepository {
     });
   }
 
-  async findAll(nome: string): Promise<Cliente[]> {
+  async findAll(data: ICreateClienteDTO): Promise<Cliente[]> {
     return await this.clienteRepository.find({
-      where: { nome }
-    });
+      where:data
+    })
   }
 
   async delete(id: number): Promise<void> {
