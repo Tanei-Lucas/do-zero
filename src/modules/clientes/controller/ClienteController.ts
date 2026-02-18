@@ -7,7 +7,7 @@ import { UpdateClienteUseCase } from "../usecases/Cliente/UpdateClienteUseCase";
 import { IFilterClienteDTO } from "../dtos/Cliente/IFilterClienteDTO";
 
 
-export class ClienteControllerimport { 
+export class ClienteController { 
 
     async create(request: Request, response: Response): Promise<Response> {
         const data = request.body;
