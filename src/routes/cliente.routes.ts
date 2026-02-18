@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { ClienteControllerimport } from "../../src/modules/clientes/controller/ClienteController"
+import { ClienteController } from "../modules/clientes/controller/ClienteController";
 
 const clienteRouter = Router()
 
-const clienteController = new ClienteControllerimport()
+const clienteController = new ClienteController()
 
 clienteRouter.post("/", clienteController.create)
 
