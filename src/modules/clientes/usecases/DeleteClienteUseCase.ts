@@ -1,4 +1,4 @@
-import { ClienteRepository } from "../../repositories/ClienteRepository"
+import { ClienteRepository } from "../repositories/ClienteRepository"
 
 export class DeleteClienteByIdUseCase {
     async execute(id: number){

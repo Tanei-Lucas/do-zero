@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { CreateProductUseCase } from "../useCases/Product/createProductUsecase";
-import { FindAllProductUseCase } from "../useCases/Product/FindAllProductsUseCase";
-import { IFilterProductsDTO } from "../dtos/Product/IFilterProductsDTO";
-import { FindByIdProductUseCase } from "../useCases/Product/FindByIdProductUseCase";
-import {DeleteProductByIdUseCase} from"../useCases/Product/DeleteProductByIdUseCase";
-import { UpdateByProductUseCase } from "../useCases/Product/UpdateByProductUseCase";
+import { CreateProductUseCase } from "../useCases/createProductUsecase";
+import { FindAllProductUseCase } from "../useCases/FindAllProductsUseCase";
+import { IFilterProductsDTO } from "../dtos/IFilterProductsDTO";
+import { FindByIdProductUseCase } from "../useCases/FindByIdProductUseCase";
+import { DeleteProductByIdUseCase } from "../useCases/DeleteProductByIdUseCase";
+import { UpdateByProductUseCase } from "../useCases/UpdateByProductUseCase";
 
 export class ProductController {
     async create(request: Request, response: Response): Promise<Response> {

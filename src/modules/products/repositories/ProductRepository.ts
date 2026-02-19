@@ -1,8 +1,8 @@
 import {Product} from "../entities/Product";
-import { ICreateProductDTO } from "../dtos/Product/ICreateProductDTO";
+import { ICreateProductDTO } from "../dtos/ICreateProductDTO";
 import { AppDataSource } from "../../../shared/infra/typeorm";
-import { IFilterProductsDTO } from "../dtos/Product/IFilterProductsDTO";
-import { IUpdateByProductDTO } from "../dtos/Product/IUpdateByProductDTO";
+import { IFilterProductsDTO } from "../dtos/IFilterProductsDTO";
+import { IUpdateByProductDTO } from "../dtos/IUpdateByProductDTO";
 
 export interface IProductRepository {
     create(data: ICreateProductDTO): Promise<Product>;

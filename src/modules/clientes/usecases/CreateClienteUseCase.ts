@@ -1,8 +1,8 @@
-import { ClienteRepository } from "../../repositories/ClienteRepository";
-import { ICreateClienteDTO } from "../../dtos/ICreateClienteDTO";
-import { Cliente } from "../../../clientes/entities/Cliente";
-import { removeSpecialChars } from "../../../../shared/utils/removeSpecialChars";
-import {isValid} from "date-fns";
+import { ClienteRepository } from "../repositories/ClienteRepository";
+import { ICreateClienteDTO } from "../dtos/ICreateClienteDTO";
+import { Cliente } from "../entities/Cliente";
+import { removeSpecialChars } from "../../../shared/utils/removeSpecialChars";
+import { isValid } from "date-fns";
 
 export class CreateClienteUseCase {
     async execute(data: ICreateClienteDTO): Promise<Cliente>{
