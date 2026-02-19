@@ -1,11 +1,12 @@
 import { Categoria } from "../../categorias/entities/Categorias";
-import { ICreateCategoriaDTO } from "../../categorias/dtos/categorias/ICreateCategoriasDTO";
+import { ICreateCategoriaDTO } from "../dtos/ICreateCategoriasDTO";
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../../shared/infra/typeorm";
-import {IUpdateCategoriaDTO} from "../../categorias/dtos/categorias/IUpdateCategoriaDTO"
+import { IUpdateCategoriaDTO } from "../dtos/IUpdateCategoriasDTO";
+
 
 export interface ICategoriaRepository{
-    create(data: ICreateCategoriaDTO): Promise<void>;
+    create(data: ICreateCategoriaDTO): Promise<Categoria | void>;
     list(): Promise<Categoria[]>;
     findById(id: number): Promise<Categoria | null>;
     findByNome(nome: string): Promise<Categoria | null>;
@@ -19,11 +20,11 @@ export class CategoriaRepository implements ICategoriaRepository {
         this.repository = AppDataSource.getRepository(Categoria);
     }
 
-    async create(data: ICreateCategoriaDTO): Promise<void> {
+    async create(data: ICreateCategoriaDTO): Promise<Categoria> {
 
         const categoria = this.repository.create(data);
 
-        await this.repository.save(categoria);
+         return await this.repository.save(categoria);
     }
 
     async list(): Promise<Categoria[]> {
