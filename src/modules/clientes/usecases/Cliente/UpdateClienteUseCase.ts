@@ -1,5 +1,5 @@
 import { ClienteRepository } from "../../repositories/ClienteRepository";
-import { IUpdateClienteDTO } from "../../dtos/Cliente/IUpdateClienteDTO"
+import { IUpdateClienteDTO } from "../../dtos/IUpdateClienteDTO"
 import { removeSpecialChars } from "../../../../shared/utils/removeSpecialChars";
 import { isValid, parseISO } from "date-fns"
 
