@@ -1,8 +1,9 @@
 import { Cliente } from "../../clientes/entities/Cliente";
-import { ICreateClienteDTO } from "../../clientes/dtos/Cliente/ICreateClienteDTO";
+import { ICreateClienteDTO } from "../dtos/ICreateClienteDTO";
 import { AppDataSource } from "../../../shared/infra/typeorm";
-import { IUpdateClienteDTO } from "../dtos/Cliente/IUpdateClienteDTO";
-import { IFilterClienteDTO } from "../../clientes/dtos/Cliente/IFilterClienteDTO";
+import { IUpdateClienteDTO } from "../dtos/IUpdateClienteDTO";
+import { IFilterClienteDTO } from "../dtos/IFilterClienteDTO";
+import { IFilterAllClienteDTO } from "../dtos/IFindAllClienteDTO";
 
 export interface IClienteRepository {
   create(data: ICreateClienteDTO): Promise<Cliente>;
@@ -39,7 +40,7 @@ export class ClienteRepository implements IClienteRepository {
     });
   }
 
-  async findAll(data: ICreateClienteDTO): Promise<Cliente[]> {
+  async findAll(data: IFilterAllClienteDTO ): Promise<Cliente[]> {
     return await this.clienteRepository.find({
       where:data
     })

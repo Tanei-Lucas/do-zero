@@ -1,12 +1,11 @@
 import { Request, Response } from "express";
 import { CreateClienteUseCase } from "../usecases/Cliente/CreateClienteUseCase";
 import { FindAllClienteUseCase } from "../usecases/Cliente/FindAllClienteUseCase";
-import { FindByIdProductUseCase } from "../../products/useCases/Product/FindByIdProductUseCase";
 import { DeleteClienteByIdUseCase } from "../usecases/Cliente/DeleteClienteUseCase";
 import { UpdateClienteUseCase } from "../usecases/Cliente/UpdateClienteUseCase";
-import { IFilterClienteDTO } from "../dtos/Cliente/IFilterClienteDTO";
-import { ICreateClienteDTO } from "../dtos/Cliente/ICreateClienteDTO";
 import { FindByIdClienteUseCase } from "../usecases/Cliente/FindByIdClienteUseCase";
+import { IFilterAllClienteDTO } from "../dtos/IFindAllClienteDTO";
+ 
 
 
 export class ClienteController { 
@@ -23,7 +22,7 @@ export class ClienteController {
 
     async findAll(request: Request, response: Response): Promise<Response> {
 
-        const data = request.query as unknown as ICreateClienteDTO
+        const data = request.query as unknown as IFilterAllClienteDTO 
 
         const findAllCienteUseCase = new FindAllClienteUseCase()
         

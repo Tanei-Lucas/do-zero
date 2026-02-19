@@ -1,9 +1,9 @@
 
 import { ClienteRepository } from "../../repositories/ClienteRepository";
-import { ICreateClienteDTO } from "../../dtos/Cliente/ICreateClienteDTO";
+import { IFilterAllClienteDTO } from "../../dtos/IFindAllClienteDTO";
 
 export class FindAllClienteUseCase{
-    async execute (data: ICreateClienteDTO){
+    async execute (data: IFilterAllClienteDTO ){
         const clienteRepository = new ClienteRepository();
         const clienteList = await clienteRepository.findAll(data);
 return clienteList;
