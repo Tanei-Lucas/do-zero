@@ -1,4 +1,4 @@
-export interface ICreateClienteDTO {
+export interface IFindAllClienteDTO {
     id: number;
 
     nome: string;
@@ -16,6 +16,8 @@ export interface ICreateClienteDTO {
     endereco: string;
 
     numero: string;
+
+    compremento?: string;
 
     bairro: string;
 

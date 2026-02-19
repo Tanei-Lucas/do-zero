@@ -1,14 +1,15 @@
 import { Request, Response } from "express";
-import { CreateClienteUseCase } from "../useCases/Cliente/CreateClienteUseCase";
-import { FindAllClienteUseCase } from "../useCases/Cliente/FindAllClienteUseCase";
-import { IFilterClienteDTO } from "../dtos/Cliente/IFilterClienteDTO";
-import { FindByIdProductUseCase } from "../useCases/Product/FindByIdProductUseCase";
-import { DeleteClienteByIdUseCase } from "../useCases/Cliente/DeleteClienteUseCase";
-import { UpdateClienteUseCase } from "../useCases/Cliente/UpdateClienteUseCase";
-import { IFilterAllClienteDTO } from "../dtos/Cliente/IFilterAllClienteDTO";
+import { CreateClienteUseCase } from "../usecases/Cliente/CreateClienteUseCase";
+import { FindAllClienteUseCase } from "../usecases/Cliente/FindAllClienteUseCase";
+import { DeleteClienteByIdUseCase } from "../usecases/Cliente/DeleteClienteUseCase";
+import { UpdateClienteUseCase } from "../usecases/Cliente/UpdateClienteUseCase";
+import { FindByIdClienteUseCase } from "../usecases/Cliente/FindByIdClienteUseCase";
+import { IFilterAllClienteDTO } from "../dtos/IFindAllClienteDTO";
+ 
 
 
-export class ClienteController {
+export class ClienteController { 
+
     async create(request: Request, response: Response): Promise<Response> {
         const data = request.body;
 
@@ -21,11 +22,11 @@ export class ClienteController {
 
     async findAll(request: Request, response: Response): Promise<Response> {
 
-        const {nome} = request.query as unknown as IFilterAllClienteDTO
+        const data = request.query as unknown as IFilterAllClienteDTO 
 
-        const findAllCienteUseCase = new FindAllClienteUseCase
+        const findAllCienteUseCase = new FindAllClienteUseCase()
         
-        const findClienteAll = await findAllCienteUseCase.execute({nome})
+        const findClienteAll = await findAllCienteUseCase.execute(data);
 
         return response.status(200).json(findClienteAll);
     }
@@ -34,7 +35,7 @@ export class ClienteController {
     
             const {id} = request.params 
     
-            const  findByIdClienteUseCase = new FindByIdProductUseCase ()
+            const  findByIdClienteUseCase = new FindByIdClienteUseCase()
     
             const product = await findByIdClienteUseCase.execute(Number(id));
             

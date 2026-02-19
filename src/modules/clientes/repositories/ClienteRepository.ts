@@ -1,8 +1,9 @@
 import { Cliente } from "../../clientes/entities/Cliente";
-import { ICreateClienteDTO } from "../../clientes/dtos/Cliente/ICreateClienteDTO";
+import { ICreateClienteDTO } from "../dtos/ICreateClienteDTO";
 import { AppDataSource } from "../../../shared/infra/typeorm";
-import { UpdateClienteDTO } from "../../clientes/dtos/Cliente/UpdateClienteDTO";
-import { IFilterClienteDTO } from "../../clientes/dtos/Cliente/IFilterClienteDTO";
+import { IUpdateClienteDTO } from "../dtos/IUpdateClienteDTO";
+import { IFilterClienteDTO } from "../dtos/IFilterClienteDTO";
+import { IFindAllClienteDTO } from "../dtos/IFindAllClienteDTO";
 
 export interface IClienteRepository {
   create(data: ICreateClienteDTO): Promise<Cliente>;
@@ -39,17 +40,17 @@ export class ClienteRepository implements IClienteRepository {
     });
   }
 
-  async findAll(nome: string): Promise<Cliente[]> {
+  async findAll(data: IFindAllClienteDTO ): Promise<Cliente[]> {
     return await this.clienteRepository.find({
-      where: { nome }
-    });
+      where:data
+    })
   }
 
   async delete(id: number): Promise<void> {
     await this.clienteRepository.delete({ id });
   }
 
-  async update(data: UpdateClienteDTO): Promise<void> {
+  async update(data: IUpdateClienteDTO): Promise<void> {
     await this.clienteRepository.update(data.id, data);
   }
 }
