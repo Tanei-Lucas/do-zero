@@ -1,4 +1,4 @@
-export interface IFilterAllClienteDTO {
+export interface IFindAllClienteDTO {
     id: number;
 
     nome: string;
