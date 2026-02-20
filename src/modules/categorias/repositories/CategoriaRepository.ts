@@ -6,7 +6,7 @@ import { IUpdateCategoriaDTO } from "../dtos/IUpdateCategoriasDTO";
 
 
 export interface ICategoriaRepository{
-    create(data: ICreateCategoriaDTO): Promise<Categoria | void>;
+    create(data: ICreateCategoriaDTO): Promise<Categoria>;
     list(): Promise<Categoria[]>;
     findById(id: number): Promise<Categoria | null>;
     findByNome(nome: string): Promise<Categoria | null>;
