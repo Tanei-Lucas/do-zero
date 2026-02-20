@@ -3,7 +3,8 @@ import { Fornecedor } from "../entities/fornecedor";
 import { FindOptionsWhere, ILike, Repository } from "typeorm";
 import { ICreateFornecedoresDTO } from "../dtos/ICreateFornecedorsDTO";
 import { IFilterFornecedorDTO } from "../dtos/IFilterFornecedorDTO";
-import { removeSpecialChars } from "../../../shared/utils/removeSpecialChars";
+import { IUpdateFornecedoresDTO } from "../dtos/IUpdateFornecedoresDTO";
+
 
 export interface IFornecedorRepository{
     create(data: ICreateFornecedoresDTO): Promise<Fornecedor>;
@@ -12,7 +13,6 @@ export interface IFornecedorRepository{
     findByCnpj(cnpj: string): Promise<Fornecedor | null>;
     update(id: number, data: ICreateFornecedoresDTO): Promise<void>;
     delete(id: number): Promise<void>;
-    removeSpecialChars(cnpj: string): Promise<void>;
 }
 
 export class FornecedorRepository implements IFornecedorRepository{
