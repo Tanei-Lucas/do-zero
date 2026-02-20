@@ -70,3 +70,4 @@ async findByCnpj(cnpj: string): Promise<Fornecedor | null>{
     
 }     
 }
+

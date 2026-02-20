@@ -1,7 +1,7 @@
 import { FindAllFornecedorUseCase } from "../useCases/findAllFornecedorUseCase";
 import { CreateFornecedoresUseCase } from "../useCases/CreateFornecedoresUseCase";
 import { Request,Response } from "express";
-import { IFilterFornecedorDTO } from "../dtos/IFilterFornecedorDTO";
+import { IFilterFornecedorDTO } from "../dtos/IFiltersFornecedorDTO";
 import { ICreateFornecedoresDTO } from "../dtos/ICreateFornecedorsDTO";
 
 
