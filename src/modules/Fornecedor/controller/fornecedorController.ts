@@ -9,8 +9,16 @@ export class FornecedorController{
     async create(request: Request, response: Response){
         const data = request.body
         const createFornecedoresUseCase= new CreateFornecedoresUseCase()
-        const createFornecedor= createFornecedoresUseCase.execute(data)
+        const createFornecedor = createFornecedoresUseCase.execute(data)
        
         return response.status(201).json(createFornecedor)
     }
+
+    async findAll(request: Request, response: Response){
+        const data = request.query as unknown as IFilterFornecedorDTO
+        const findAllFornecedorUseCase = new FindAllFornecedorUseCase()
+        const fornecedor = findAllFornecedorUseCase.execute(data)
+        return response.status(200).json(fornecedor)
+}
+
 }

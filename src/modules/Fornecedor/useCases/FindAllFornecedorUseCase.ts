@@ -7,11 +7,7 @@ export class FindAllFornecedorUseCase{
 async execute(filters?: IFilterFornecedorDTO){
     const fornecedorRepository = new FornecedorRepository()
     const fornecedor = await fornecedorRepository.list(filters)
-    
-    if(fornecedor){
-        return fornecedor
-    }
-    throw new Error("Nada encontrado")
-
+  
+    return fornecedor
 }
 }
