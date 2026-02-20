@@ -1,12 +1,10 @@
 import { Request, Response } from "express";
-import { CreateClienteUseCase } from "../usecases/Cliente/CreateClienteUseCase";
-import { FindAllClienteUseCase } from "../usecases/Cliente/FindAllClienteUseCase";
-import { DeleteClienteByIdUseCase } from "../usecases/Cliente/DeleteClienteUseCase";
-import { UpdateClienteUseCase } from "../usecases/Cliente/UpdateClienteUseCase";
-import { FindByIdClienteUseCase } from "../usecases/Cliente/FindByIdClienteUseCase";
-import { IFilterAllClienteDTO } from "../dtos/IFindAllClienteDTO";
- 
-
+import { CreateClienteUseCase } from "../usecases/CreateClienteUseCase";
+import { FindAllClienteUseCase } from "../usecases/FindAllClienteUseCase";
+import { DeleteClienteByIdUseCase } from "../usecases/DeleteClienteUseCase";
+import { UpdateClienteUseCase } from "../usecases/UpdateClienteUseCase";
+import { FindByIdClienteUseCase } from "../usecases/FindByIdClienteUseCase";
+import { IFindAllClienteDTO } from "../dtos/IFindAllClienteDTO";
 
 export class ClienteController { 
 
@@ -22,7 +20,7 @@ export class ClienteController {
 
     async findAll(request: Request, response: Response): Promise<Response> {
 
-        const data = request.query as unknown as IFilterAllClienteDTO 
+        const data = request.query as unknown as IFindAllClienteDTO 
 
         const findAllCienteUseCase = new FindAllClienteUseCase()
         

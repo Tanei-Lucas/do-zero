@@ -1,8 +1,7 @@
-export interface IUpdateCategoriaDTO {
+export interface IFilterCategoriaDTO{
     id: number;
     nome: string;
     descricao?: string; 
     ativo: true; 
-    created_at: Date;
 
 }

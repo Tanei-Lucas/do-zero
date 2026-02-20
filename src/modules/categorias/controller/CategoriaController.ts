@@ -1,21 +1,19 @@
-import { CreateCategoriaUseCase } from "../usecases/Categorias/CreateCategoriasUseCase";
+import { CreateCategoriaUseCase } from "../useCases/CreateCategoriasUseCase";
 import { Request, Response } from "express";
-import { ICreateCategoriaDTO } from "../dtos/categorias/ICreateCategoriasDTO";
-import { FindAllCategoriaUseCase } from "../usecases/Categorias/FindAllCategoriaUseCase";
-import { FindByIdCategoriaUseCase } from "../usecases/Categorias/FindByIdCategoriaUseCase";
-import { UpdateByProductUseCase } from "../../products/useCases/Product/UpdateByProductUseCase";
-import { DeleteCategoriaUseCase } from "../usecases/Categorias/DeleteCategoriasUseCase";
-
+import { FindAllCategoriaUseCase } from "../useCases/FindAllCategoriaUseCase";
+import { FindByIdCategoriaUseCase } from "../useCases/FindByIdCategoriaUseCase";
+import { DeleteCategoriaUseCase } from "../useCases/DeleteCategoriasUseCase";
+import { UpdateCategoriaUseCase } from "../useCases/UpdateCategoriaUseCase";
 
 export class CategoriaController{
 
     async create(request: Request, response: Response){
-
+        
         const data = request.body;
 
         const createCategoriasUseCase = new CreateCategoriaUseCase();
 
-        const createdCategoria = createCategoriasUseCase.execute(data);
+        const createdCategoria = await createCategoriasUseCase.execute(data);
 
         return response.status(201).json(createdCategoria)
     }
@@ -36,16 +34,16 @@ export class CategoriaController{
 
         const findByIdCategoriaUseCase = new FindByIdCategoriaUseCase();
 
-        const findIdCategoria = await findByIdCategoriaUseCase.execute(Number(id));
+        const categoria = await findByIdCategoriaUseCase.execute(Number(id));
 
-        return response.status(204).json(findIdCategoria); 
+        return response.status(200).json(categoria); 
     }
 
     async update(request: Request, response: Response): Promise<Response>{
         const {id} = request.params
         const data = request.body
-        const updateCategoriaUseCase = new  UpdateByProductUseCase()
-        await updateCategoriaUseCase.execute({id: Number(id), ...data}) 
+        const updateCategoriaUseCase = new  UpdateCategoriaUseCase()
+        await updateCategoriaUseCase.execute(Number(id), data) 
         return response.status(204).send()
     }
 

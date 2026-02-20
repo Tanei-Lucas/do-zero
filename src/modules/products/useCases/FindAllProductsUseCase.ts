@@ -1,5 +1,5 @@
-import { ProductRepository } from "../../repositories/ProductRepository";
-import { IFilterProductsDTO } from "../../dtos/Product/IFilterProductsDTO";
+import { ProductRepository } from "../repositories/ProductRepository";
+import { IFilterProductsDTO } from "../dtos/IFilterProductsDTO";
 
 export class FindAllProductUseCase{
     async execute ({ nome, preco }: IFilterProductsDTO ){

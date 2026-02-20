@@ -1,4 +1,4 @@
-import { ClienteRepository } from "../../repositories/ClienteRepository";
+import { ClienteRepository } from "../repositories/ClienteRepository";
 
 export class FindByIdClienteUseCase {
     async execute(id: number){

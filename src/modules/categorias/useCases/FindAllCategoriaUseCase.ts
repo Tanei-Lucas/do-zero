@@ -1,5 +1,4 @@
-import { CategoriaRepository } from "../../repositories/CategoriaRepository";
-import { ICreateCategoriaDTO } from "../../../categorias/dtos/categorias/ICreateCategoriasDTO";
+import { CategoriaRepository } from "../repositories/CategoriaRepository";
 
 export class FindAllCategoriaUseCase{
     async execute(){
