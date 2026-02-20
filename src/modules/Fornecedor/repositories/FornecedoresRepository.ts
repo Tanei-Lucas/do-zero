@@ -1,9 +1,72 @@
 import { AppDataSource } from "../../../shared/infra/typeorm";
 import { Fornecedor } from "../entities/fornecedor";
-import { ILike, Repository } from "typeorm";
+import { FindOptionsWhere, ILike, Repository } from "typeorm";
 import { ICreateFornecedoresDTO } from "../dtos/ICreateFornecedorsDTO";
+import { IFilterFornecedorDTO } from "../dtos/IFilterFornecedorDTO";
+import { removeSpecialChars } from "../../../shared/utils/removeSpecialChars";
 
 export interface IFornecedorRepository{
     create(data: ICreateFornecedoresDTO): Promise<Fornecedor>;
-    list(filters?: any): Promise<Fornecedor>;
+    list(filters?: IFilterFornecedorDTO): Promise<Fornecedor[]>;
+    findById(id: string): Promise<Fornecedor | null>;
+    findByCnpj(cnpj: string): Promise<Fornecedor | null>;
+    update(id: number, data: ICreateFornecedoresDTO): Promise<void>;
+    delete(id: number): Promise<void>;
+    removeSpecialChars(cnpj: string): Promise<void>;
+}
+
+export class FornecedorRepository implements IFornecedorRepository{
+    private repository: Repository<Fornecedor>
+
+
+constructor(){
+    this.repository = AppDataSource.getRepository(Fornecedor);
+}
+
+    async create(data: ICreateFornecedoresDTO): Promise<Fornecedor>{
+        const fornecedor = this.repository.create(data);
+        return await this.repository.save(fornecedor)
+    }
+
+    async list(filters?: IFilterFornecedorDTO): Promise<Fornecedor[]> {
+        const where: FindOptionsWhere<Fornecedor> = {}
+
+        if(filters?.nome){
+            where.nome = ILike (`%${filters.nome}% `)
+        }
+
+        if(filters?.email){
+            where.email = ILike (`%${filters.email}% `)
+        }
+
+        if(filters?.cnpj){
+            where.cnpj = ILike (`%${filters.cnpj}% `)
+        }
+
+        if(filters?.telefone){
+            where.telefone = ILike (`%${filters.telefone}% `)
+        }
+
+        return await this.repository.find({where})
+
+}
+
+async findById(id: string): Promise<Fornecedor | null> {
+    return await this.repository.findOneBy({id})
+} 
+
+async update(id: number, data: IUpdateFornecedoresDTO): Promise<void> {
+    await this.repository.update(id, data)
+}
+
+async delete(id: number): Promise<void> {
+    await this.repository.delete(id)
+}
+
+async findByCnpj(cnpj: string): Promise<Fornecedor | null>{
+    return await this.repository.findOne({
+        where:{cnpj}
+    })
+    
+}     
 }
