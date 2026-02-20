@@ -34,9 +34,9 @@ export class CategoriaController{
 
         const findByIdCategoriaUseCase = new FindByIdCategoriaUseCase();
 
-        const IdCategoria = await findByIdCategoriaUseCase.execute(Number(id));
+        const categoria = await findByIdCategoriaUseCase.execute(Number(id));
 
-        return response.status(200).json(IdCategoria); 
+        return response.status(200).json(categoria); 
     }
 
     async update(request: Request, response: Response): Promise<Response>{
