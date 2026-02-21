@@ -13,6 +13,7 @@ export interface IFornecedorRepository{
     findByCnpj(cnpj: string): Promise<Fornecedor | null>;
     update(id: number, data: ICreateFornecedoresDTO): Promise<void>;
     delete(id: number): Promise<void>;
+    findByEmail(email: string): Promise<Fornecedor | null>
 }
 
 export class FornecedorRepository implements IFornecedorRepository{
@@ -32,19 +33,19 @@ constructor(){
         const where: FindOptionsWhere<Fornecedor> = {}
 
         if(filters?.nome){
-            where.nome = ILike (`%${filters.nome}% `)
+            where.nome = ILike (`%${filters.nome}%`)
         }
 
         if(filters?.email){
-            where.email = ILike (`%${filters.email}% `)
+            where.email = ILike (`%${filters.email}%`)
         }
 
         if(filters?.cnpj){
-            where.cnpj = ILike (`%${filters.cnpj}% `)
+            where.cnpj = ILike (`%${filters.cnpj}%`)
         }
 
         if(filters?.telefone){
-            where.telefone = ILike (`%${filters.telefone}% `)
+            where.telefone = ILike (`%${filters.telefone}%`)
         }
 
         return await this.repository.find({where})
@@ -66,8 +67,14 @@ async delete(id: number): Promise<void> {
 async findByCnpj(cnpj: string): Promise<Fornecedor | null>{
     return await this.repository.findOne({
         where:{cnpj}
+    })    
+} 
+
+async findByEmail(email: string): Promise<Fornecedor | null>{
+    return await this.repository.findOne({
+        where:{email}
     })
-    
-}     
+}
+
 }
 
