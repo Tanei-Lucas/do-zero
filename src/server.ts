@@ -3,7 +3,7 @@ import express, { Request, Response, NextFunction } from "express";
 import { productRouter } from "./routes/product.routes";
 import {clienteRouter} from "./routes/cliente.routes";
 import { categoriaRouter } from "./routes/categoria.routes";
-import { fornecedorRoute } from "./routes/fornecedores.routes";
+import { fornecedorRouter } from "./routes/fornecedores.routes";
 
 const app = express();
 
@@ -15,7 +15,7 @@ app.use("/clientes", clienteRouter);
 
 app.use("/categorias", categoriaRouter);
 
-app.use("/fornecedores", fornecedorRoute)
+app.use("/fornecedores", fornecedorRouter)
 
 
 app.listen(3333, () => console.log("servidor rodando na porta 3333"));

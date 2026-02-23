@@ -24,9 +24,9 @@ export class ClienteController {
 
         const findAllCienteUseCase = new FindAllClienteUseCase()
         
-        const findClienteAll = await findAllCienteUseCase.execute(data);
+        const ClienteAll = await findAllCienteUseCase.execute(data);
 
-        return response.status(200).json(findClienteAll);
+        return response.status(200).json(ClienteAll);
     }
     
     async findById(request: Request, response: Response): Promise<Response> {

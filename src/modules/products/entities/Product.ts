@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { Fornecedor } from "../../Fornecedor/entities/fornecedor";
 
 @Entity("products")
 export class Product {
@@ -10,4 +11,8 @@ export class Product {
 
   @Column("decimal")
   preco: number;
+
+  @ManyToOne(() => Fornecedor,fornecedor => fornecedor.products)
+  @JoinColumn({name:"forncedor_id"})
+  fornecedor:Fornecedor
 }

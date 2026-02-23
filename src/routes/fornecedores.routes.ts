@@ -1,13 +1,13 @@
 import { FornecedorController } from "../modules/Fornecedor/controller/fornecedorController";
 import { Router } from "express";
 
-const fornecedorRoute = Router()
+const fornecedorRouter = Router()
 
 const fornecedorController = new FornecedorController()
 
-fornecedorRoute.post("/", fornecedorController.create);
+fornecedorRouter.post("/", fornecedorController.create);
 
-fornecedorRoute.get("/", fornecedorController.findAll);
+fornecedorRouter.get("/", fornecedorController.findAll);
 
 
-export {fornecedorRoute}
+export {fornecedorRouter}

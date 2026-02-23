@@ -1,12 +1,9 @@
-
-export interface IFilterFornecedorDTO {
-    id?: string;   
-
-    nome?: string; 
-
-    cnpj?: string;   
+export interface IFilterFornecedorDTO{
+    nome?: string;
     
-    email?: string;
+    cnpj?: string
     
-    telefone?: string;
+    email?: string
+    
+    telefone?: string
 }
