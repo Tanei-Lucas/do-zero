@@ -15,5 +15,9 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "exclude": [
+    "dist",
+    "src/modules/Fornecedor/controller/fornecedorController.ts"
+  ]
 }

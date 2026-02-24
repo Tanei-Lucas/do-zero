@@ -1,7 +1,9 @@
 import { FindAllFornecedorUseCase } from "../useCases/findAllFornecedorUseCase";
 import { CreateFornecedoresUseCase } from "../useCases/CreateFornecedoresUseCase";
+import { UpdateFornecedorUseCase } from "../useCases/UpdateFornecedorUseCase";
 import { Request, Response } from "express";
 import { IFilterFornecedorDTO } from "../dtos/IFiltersFornecedorDTO";
+import { IUpdateFornecedoresDTO } from "../dtos/IUpdateFornecedoresDTO";
 import { FornecedorRepository } from "../repositories/FornecedoresRepository";
 
 export class FornecedorController {
@@ -14,7 +16,6 @@ export class FornecedorController {
     }
 
     async findAll(request: Request, response: Response) {
-
         const data = request.query as unknown as IFilterFornecedorDTO
 
         const findAllFornecedorUseCase = new FindAllFornecedorUseCase()
@@ -22,19 +23,38 @@ export class FornecedorController {
         const fornecedores = await findAllFornecedorUseCase.execute(data)
 
         return response.status(200).json(fornecedores)
-
     }
 
-    async delete(request: Request, response: Response){
-
-        const {id} = request.params
+    async delete(request: Request, response: Response) {
+        const id = String(request.params.id)
 
         const fornecedorRepository = new FornecedorRepository()
-
-        await fornecedorRepository.delete(Number(id))
+        await fornecedorRepository.delete(id)
 
         return response.status(204).json()
-
     }
 
+    async update(request: Request, response: Response) {
+        const id = String(request.params.id)
+        const data = request.body as IUpdateFornecedoresDTO
+
+        const updateFornecedorUseCase = new UpdateFornecedorUseCase()
+        const updatedFornecedor = await updateFornecedorUseCase.execute(id, data)
+
+        return response.status(200).json(updatedFornecedor)
+    }
+
+    async updateStatus(request: Request, response: Response) {
+        const id = String(request.params.id)
+        const { ativo } = request.body as { ativo?: unknown }
+
+        if (typeof ativo !== "boolean") {
+            return response.status(400).json({ message: "Campo 'ativo' deve ser boolean (true/false)" })
+        }
+
+        const updateFornecedorUseCase = new UpdateFornecedorUseCase()
+        const updatedFornecedor = await updateFornecedorUseCase.execute(id, { ativo })
+
+        return response.status(200).json(updatedFornecedor)
+    }
 }

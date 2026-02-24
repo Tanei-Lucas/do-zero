@@ -11,8 +11,8 @@ export interface IFornecedorRepository{
     list(filters?: IFilterFornecedorDTO): Promise<Fornecedor[]>;
     findById(id: string): Promise<Fornecedor | null>;
     findByCnpj(cnpj: string): Promise<Fornecedor | null>;
-    update(id: number, data: ICreateFornecedoresDTO): Promise<void>;
-    delete(id: number): Promise<void>;
+    update(id: string, data: IUpdateFornecedoresDTO): Promise<void>;
+    delete(id: string): Promise<void>;
     findByEmail(email: string): Promise<Fornecedor | null>
 }
 
@@ -56,11 +56,11 @@ async findById(id: string): Promise<Fornecedor | null> {
     return await this.repository.findOneBy({id})
 } 
 
-async update(id: number, data: IUpdateFornecedoresDTO): Promise<void> {
+async update(id: string, data: IUpdateFornecedoresDTO): Promise<void> {
     await this.repository.update(id, data)
 }
 
-async delete(id: number): Promise<void> {
+async delete(id: string): Promise<void> {
     await this.repository.delete(id)
 }
 

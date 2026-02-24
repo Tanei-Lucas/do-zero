@@ -1,4 +1,4 @@
-import { FornecedorController } from "../modules/Fornecedor/controller/fornecedorController";
+import { FornecedorController } from "../modules/Fornecedor/controller/FornecedorController";
 import { Router } from "express";
 
 const fornecedorRouter = Router()
@@ -9,5 +9,10 @@ fornecedorRouter.post("/", fornecedorController.create);
 
 fornecedorRouter.get("/", fornecedorController.findAll);
 
+fornecedorRouter.delete("/:id", fornecedorController.delete);
+
+fornecedorRouter.patch("/:id", fornecedorController.update);
+
+fornecedorRouter.patch("/:id/status", fornecedorController.updateStatus);
 
 export {fornecedorRouter}

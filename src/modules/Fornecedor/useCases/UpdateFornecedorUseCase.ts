@@ -1,47 +1,17 @@
-
 import { IUpdateFornecedoresDTO } from "../dtos/IUpdateFornecedoresDTO";
-import { IUpdateByProductDTO } from "../../products/dtos/IUpdateByProductDTO";
+import { FornecedorRepository } from "../repositories/FornecedoresRepository";
 
-export interface IUpdateFornecedorComProdutoDTO {
-    fornecedor?: IUpdateFornecedoresDTO;  
-    produto?: IUpdateByProductDTO;        
-}
+export class UpdateFornecedorUseCase {
+    async execute(id: string, data: IUpdateFornecedoresDTO) {
+        const fornecedorRepository = new FornecedorRepository();
 
-import { ProductRepository } from "../../products/repositories/ProductRepository";
-import { FornecedorRepository } from "../../Fornecedor/repositories/FornecedoresRepository";
-
-
-export class UpdateFornecedorEProdutoUseCase {
-    async execute(
-        fornecedorId: string,  produtoId: number, data: IUpdateFornecedorComProdutoDTO) {
-        const productRepo = new ProductRepository();
-        const fornecedorRepo = new FornecedorRepository();
-
-        const fornecedor = await fornecedorRepo.findById(fornecedorId);
+        const fornecedor = await fornecedorRepository.findById(id);
         if (!fornecedor) {
             throw new Error("Fornecedor não encontrado");
         }
 
-        const produto = await productRepo.findById(produtoId);
-        if (!produto) {
-            throw new Error("Produto não encontrado");
-        }
+        await fornecedorRepository.update(id, data);
 
-        if (produto.fornecedor?.id !== fornecedorId) {
-            throw new Error("Este produto não pertence a este fornecedor");
-        }
-
-        if (data.fornecedor) {
-            await fornecedorRepo.update(Number(fornecedorId), data.fornecedor);
-        }
-
-        if (data.produto) {
-            await productRepo.update(data.produto);
-        }
-
-        return {
-            fornecedor: await fornecedorRepo.findById(fornecedorId),
-            produto: await productRepo.findById(produtoId)
-        };
+        return await fornecedorRepository.findById(id);
     }
 }
