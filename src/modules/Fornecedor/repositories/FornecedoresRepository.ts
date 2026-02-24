@@ -2,7 +2,7 @@ import { AppDataSource } from "../../../shared/infra/typeorm";
 import { Fornecedor } from "../entities/fornecedor";
 import { FindOptionsWhere, ILike, Repository } from "typeorm";
 import { ICreateFornecedoresDTO } from "../dtos/ICreateFornecedorsDTO";
-import { IFilterFornecedorDTO } from "../dtos/IFilterFornecedorDTO";
+import { IFilterFornecedorDTO } from "../dtos/IFiltersFornecedorDTO";
 import { IUpdateFornecedoresDTO } from "../dtos/IUpdateFornecedoresDTO";
 
 

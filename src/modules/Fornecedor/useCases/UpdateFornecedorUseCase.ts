@@ -1,15 +1,47 @@
+
 import { IUpdateFornecedoresDTO } from "../dtos/IUpdateFornecedoresDTO";
-import { FornecedorRepository } from "../repositories/FornecedoresRepository";
+import { IUpdateByProductDTO } from "../../products/dtos/IUpdateByProductDTO";
+
+export interface IUpdateFornecedorComProdutoDTO {
+    fornecedor?: IUpdateFornecedoresDTO;  
+    produto?: IUpdateByProductDTO;        
+}
+
+import { ProductRepository } from "../../products/repositories/ProductRepository";
+import { FornecedorRepository } from "../../Fornecedor/repositories/FornecedoresRepository";
 
 
-export class UpdateFornecedorUseCase {
-    async execute(id: string, data: IUpdateFornecedoresDTO): Promise<void> {
-        const fornecedorRepository = new FornecedorRepository();
-        const update = await fornecedorRepository.findById(id)
+export class UpdateFornecedorEProdutoUseCase {
+    async execute(
+        fornecedorId: string,  produtoId: number, data: IUpdateFornecedorComProdutoDTO) {
+        const productRepo = new ProductRepository();
+        const fornecedorRepo = new FornecedorRepository();
 
-        if (update) {
-            return await fornecedorRepository.update(Number(id), data)
+        const fornecedor = await fornecedorRepo.findById(fornecedorId);
+        if (!fornecedor) {
+            throw new Error("Fornecedor não encontrado");
         }
-        throw new Error("Fornecedor não existe")
+
+        const produto = await productRepo.findById(produtoId);
+        if (!produto) {
+            throw new Error("Produto não encontrado");
+        }
+
+        if (produto.fornecedor?.id !== fornecedorId) {
+            throw new Error("Este produto não pertence a este fornecedor");
+        }
+
+        if (data.fornecedor) {
+            await fornecedorRepo.update(Number(fornecedorId), data.fornecedor);
+        }
+
+        if (data.produto) {
+            await productRepo.update(data.produto);
+        }
+
+        return {
+            fornecedor: await fornecedorRepo.findById(fornecedorId),
+            produto: await productRepo.findById(produtoId)
+        };
     }
 }

@@ -3,7 +3,7 @@ import { Fornecedor } from "../../Fornecedor/entities/fornecedor";
 
 @Entity("products")
 export class Product {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: number;
 
   @Column()
@@ -13,6 +13,6 @@ export class Product {
   preco: number;
 
   @ManyToOne(() => Fornecedor,fornecedor => fornecedor.products)
-  @JoinColumn({name:"forncedor_id"})
+  @JoinColumn({name:"fornecedor_id"})
   fornecedor:Fornecedor
 }

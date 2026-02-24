@@ -1,5 +1,5 @@
 export interface IUpdateByProductDTO{
-    id: string,
+    id:number
     nome: string,
     preco: number,
 }

@@ -22,11 +22,11 @@ export class ClienteController {
 
         const data = request.query as unknown as IFindAllClienteDTO 
 
-        const findAllCienteUseCase = new FindAllClienteUseCase()
+        const findAllClienteUseCase = new FindAllClienteUseCase()
         
-        const ClienteAll = await findAllCienteUseCase.execute(data);
+        const clientes = await findAllClienteUseCase.execute(data);
 
-        return response.status(200).json(ClienteAll);
+        return response.status(200).json(clientes);
     }
     
     async findById(request: Request, response: Response): Promise<Response> {

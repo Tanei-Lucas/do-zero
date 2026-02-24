@@ -1,5 +1,5 @@
 import { FornecedorRepository } from "../repositories/FornecedoresRepository";
-import { IFilterFornecedorDTO } from "../dtos/IFilterFornecedorDTO";
+import { IFilterFornecedorDTO } from "../dtos/IFiltersFornecedorDTO";
 
 
 export class FindAllFornecedorUseCase {
