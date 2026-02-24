@@ -11,7 +11,7 @@ fornecedorRouter.get("/", fornecedorController.findAll);
 
 fornecedorRouter.delete("/:id", fornecedorController.delete);
 
-fornecedorRouter.put("/:id", fornecedorController.update);
+fornecedorRouter.patch("/:id", fornecedorController.update);
 
 fornecedorRouter.patch("/:id/status", fornecedorController.updateStatus);
 

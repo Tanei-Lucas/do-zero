@@ -1,15 +1,11 @@
 import { ICreateFornecedoresDTO } from "../dtos/ICreateFornecedorsDTO";
-import { Fornecedor } from "../entities/fornecedor";
+import { Fornecedor } from "../entities/Fornecedor";
 import { FornecedorRepository } from "../repositories/FornecedoresRepository";
 import { removeSpecialChars } from "../../../shared/utils/removeSpecialChars";
 
 export class CreateFornecedoresUseCase{
     async execute(data: ICreateFornecedoresDTO): Promise<Fornecedor>{
         const fornecedorRepository = new FornecedorRepository()
-
-         const cnpjLimpo = data.cnpj.replace(/[^\d]/g, '');
-
-         const fornecedorExistente = await fornecedorRepository.findByCnpj(cnpjLimpo);
 
         const CnpjInvalid = removeSpecialChars(data.cnpj)
 
@@ -22,7 +18,7 @@ export class CreateFornecedoresUseCase{
             throw new Error("Cnpj Deve conter 14 caracteres")
         }
 
-        if(fornecedorExistente){
+        if(CnpjInvalid){
             throw new Error("Cnpj já cadastrado")
         }
 

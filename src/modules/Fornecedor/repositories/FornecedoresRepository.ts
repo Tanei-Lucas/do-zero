@@ -1,5 +1,5 @@
 import { AppDataSource } from "../../../shared/infra/typeorm";
-import { Fornecedor } from "../entities/fornecedor";
+import { Fornecedor } from "../entities/Fornecedor";
 import { FindOptionsWhere, ILike, Repository } from "typeorm";
 import { ICreateFornecedoresDTO } from "../dtos/ICreateFornecedorsDTO";
 import { IFilterFornecedorDTO } from "../dtos/IFiltersFornecedorDTO";
@@ -10,7 +10,6 @@ export interface IFornecedorRepository{
     create(data: ICreateFornecedoresDTO): Promise<Fornecedor>;
     list(filters?: IFilterFornecedorDTO): Promise<Fornecedor[]>;
     findById(id: string): Promise<Fornecedor | null>;
-    findByCnpj(cnpj: string): Promise<Fornecedor | null>;
     update(id: string, data: IUpdateFornecedoresDTO): Promise<void>;
     delete(id: string): Promise<void>;
     findByEmail(email: string): Promise<Fornecedor | null>
@@ -63,12 +62,7 @@ async update(id: string, data: IUpdateFornecedoresDTO): Promise<void> {
 async delete(id: string): Promise<void> {
     await this.repository.delete(id)
 }
-
-async findByCnpj(cnpj: string): Promise<Fornecedor | null>{
-    return await this.repository.findOne({
-        where:{cnpj}
-    })    
-} 
+ 
 
 async findByEmail(email: string): Promise<Fornecedor | null>{
     return await this.repository.findOne({
