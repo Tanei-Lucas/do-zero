@@ -7,10 +7,10 @@ import { FornecedorRepository } from "../repositories/FornecedoresRepository";
 export class FornecedorController {
     async create(request: Request, response: Response) {
         const data = request.body
-        const createdFornecedoresUseCase = new CreateFornecedoresUseCase()
-        const createFornecedor = await createdFornecedoresUseCase.execute(data)
+        const createFornecedoresUseCase = new CreateFornecedoresUseCase()
+        const createdFornecedor = await createFornecedoresUseCase.execute(data)
 
-        return response.status(201).json(createFornecedor)
+        return response.status(201).json(createdFornecedor)
     }
 
     async findAll(request: Request, response: Response) {
@@ -31,9 +31,9 @@ export class FornecedorController {
 
         const fornecedorRepository = new FornecedorRepository()
 
-        const fornecedores = await fornecedorRepository.delete(Number(id))
+        await fornecedorRepository.delete(Number(id))
 
-        return response.status(200).json(fornecedores)
+        return response.status(204).json()
 
     }
 
