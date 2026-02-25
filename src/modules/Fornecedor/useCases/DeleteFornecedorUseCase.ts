@@ -1,4 +1,4 @@
-import { FornecedorRepository } from "../repositories/FornecedoresRepository" 
+import { FornecedorRepository } from "../repositories/FornecedorRepository" 
 
 export class DeleteFornecedorUseCase {
     async execute(id: string){

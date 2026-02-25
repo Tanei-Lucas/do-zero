@@ -1,16 +1,16 @@
 import { FindAllFornecedorUseCase } from "../useCases/findAllFornecedorUseCase";
-import { CreateFornecedoresUseCase } from "../useCases/CreateFornecedoresUseCase";
+import { CreateFornecedorUseCase } from "../useCases/CreateFornecedoreUseCase";
 import { UpdateFornecedorUseCase } from "../useCases/UpdateFornecedorUseCase";
 import { Request, Response } from "express";
 import { IFilterFornecedorDTO } from "../dtos/IFiltersFornecedorDTO";
 import { IUpdateFornecedoresDTO } from "../dtos/IUpdateFornecedoresDTO";
-import { FornecedorRepository } from "../repositories/FornecedoresRepository";
+import { FornecedorRepository } from "../repositories/FornecedorRepository";
 
 export class FornecedorController {
     async create(request: Request, response: Response) {
         const data = request.body
-        const createFornecedoresUseCase = new CreateFornecedoresUseCase()
-        const createdFornecedor = await createFornecedoresUseCase.execute(data)
+        const createFornecedorUseCase = new CreateFornecedorUseCase()
+        const createdFornecedor = await createFornecedorUseCase.execute(data)
 
         return response.status(201).json(createdFornecedor)
     }
@@ -18,9 +18,9 @@ export class FornecedorController {
     async findAll(request: Request, response: Response) {
         const data = request.query as unknown as IFilterFornecedorDTO
 
-        const findAllFornecedorUseCase = new FindAllFornecedorUseCase()
+        const findAllFornecedoresUseCase = new FindAllFornecedorUseCase()
 
-        const fornecedores = await findAllFornecedorUseCase.execute(data)
+        const fornecedores = await findAllFornecedoresUseCase.execute(data)
 
         return response.status(200).json(fornecedores)
     }

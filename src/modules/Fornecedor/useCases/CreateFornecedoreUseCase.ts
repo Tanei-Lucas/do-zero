@@ -1,27 +1,28 @@
-import { ICreateFornecedoresDTO } from "../dtos/ICreateFornecedorsDTO";
 import { Fornecedor } from "../entities/Fornecedor";
-import { FornecedorRepository } from "../repositories/FornecedoresRepository";
+import { ICreateFornecedorDTO } from "../dtos/ICreateFornecedorDTO";
+import { FornecedorRepository } from "../repositories/FornecedorRepository";
 import { removeSpecialChars } from "../../../shared/utils/removeSpecialChars";
-
-export class CreateFornecedoresUseCase{
-    async execute(data: ICreateFornecedoresDTO): Promise<Fornecedor>{
+ 
+export class CreateFornecedorUseCase{
+    async execute(data: ICreateFornecedorDTO): Promise<Fornecedor>{
         const fornecedorRepository = new FornecedorRepository()
-
-        const CnpjInvalid = removeSpecialChars(data.cnpj)
-
+ 
+        const cnpjLimpo = removeSpecialChars(data.cnpj)
+ 
         const emailExistente = await fornecedorRepository.findByEmail(data.email);
         if (emailExistente) {
             throw new Error("Email já cadastrado no sistema");
         }
-
-        if(CnpjInvalid.length !== 14 ){
+ 
+        if(cnpjLimpo.length !== 14 ){
             throw new Error("Cnpj Deve conter 14 caracteres")
         }
-
-        if(CnpjInvalid){
+ 
+        const fornecedorExistente = await fornecedorRepository.findByCnpj(cnpjLimpo)
+        if(fornecedorExistente){
             throw new Error("Cnpj já cadastrado")
         }
-
+ 
         return await fornecedorRepository.create(data)
     }
 }

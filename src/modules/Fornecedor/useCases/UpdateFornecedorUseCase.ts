@@ -1,5 +1,5 @@
 import { IUpdateFornecedoresDTO } from "../dtos/IUpdateFornecedoresDTO";
-import { FornecedorRepository } from "../repositories/FornecedoresRepository";
+import { FornecedorRepository } from "../repositories/FornecedorRepository";
 
 export class UpdateFornecedorUseCase {
     async execute(id: string, data: IUpdateFornecedoresDTO) {

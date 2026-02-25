@@ -1,4 +1,4 @@
-import { FornecedorRepository } from "../repositories/FornecedoresRepository";
+import { FornecedorRepository } from "../repositories/FornecedorRepository";
 import { IFilterFornecedorDTO } from "../dtos/IFiltersFornecedorDTO";
 
 

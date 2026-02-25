@@ -1,15 +1,16 @@
 import { AppDataSource } from "../../../shared/infra/typeorm";
 import { Fornecedor } from "../entities/Fornecedor";
 import { FindOptionsWhere, ILike, Repository } from "typeorm";
-import { ICreateFornecedoresDTO } from "../dtos/ICreateFornecedorsDTO";
+import { ICreateFornecedorDTO } from "../dtos/ICreateFornecedorDTO";
 import { IFilterFornecedorDTO } from "../dtos/IFiltersFornecedorDTO";
 import { IUpdateFornecedoresDTO } from "../dtos/IUpdateFornecedoresDTO";
 
 
 export interface IFornecedorRepository{
-    create(data: ICreateFornecedoresDTO): Promise<Fornecedor>;
+    create(data: ICreateFornecedorDTO): Promise<Fornecedor>;
     list(filters?: IFilterFornecedorDTO): Promise<Fornecedor[]>;
     findById(id: string): Promise<Fornecedor | null>;
+    findByCnpj(cnpj: string): Promise<Fornecedor | null>;
     update(id: string, data: IUpdateFornecedoresDTO): Promise<void>;
     delete(id: string): Promise<void>;
     findByEmail(email: string): Promise<Fornecedor | null>
@@ -23,31 +24,25 @@ constructor(){
     this.repository = AppDataSource.getRepository(Fornecedor);
 }
 
-    async create(data: ICreateFornecedoresDTO): Promise<Fornecedor>{
+    async create(data: ICreateFornecedorDTO): Promise<Fornecedor>{
         const fornecedor = this.repository.create(data);
         return await this.repository.save(fornecedor)
     }
 
     async list(filters?: IFilterFornecedorDTO): Promise<Fornecedor[]> {
-        const where: FindOptionsWhere<Fornecedor> = {}
+        const nome = filters?.nome ? ILike(`%${filters.nome}%`) : undefined
+        const email = filters?.email ? ILike(`%${filters.email}%`) : undefined
+        const cnpj = filters?.cnpj ? ILike(`%${filters.cnpj}%`) : undefined
+        const telefone = filters?.telefone ? ILike(`%${filters.telefone}%`) : undefined
 
-        if(filters?.nome){
-            where.nome = ILike (`%${filters.nome}%`)
+        const where: FindOptionsWhere<Fornecedor> = {
+            nome,
+            email,
+            cnpj,
+            telefone,
         }
 
-        if(filters?.email){
-            where.email = ILike (`%${filters.email}%`)
-        }
-
-        if(filters?.cnpj){
-            where.cnpj = ILike (`%${filters.cnpj}%`)
-        }
-
-        if(filters?.telefone){
-            where.telefone = ILike (`%${filters.telefone}%`)
-        }
-
-        return await this.repository.find({where})
+        return await this.repository.find({ where })
 
 }
 
@@ -64,11 +59,16 @@ async delete(id: string): Promise<void> {
 }
  
 
+async findByCnpj(cnpj: string): Promise<Fornecedor | null>{
+    return await this.repository.findOne({
+        where:{cnpj}
+    })    
+} 
+
 async findByEmail(email: string): Promise<Fornecedor | null>{
     return await this.repository.findOne({
         where:{email}
     })
 }
-
 }
 

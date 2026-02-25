@@ -12,7 +12,7 @@ export interface IProductRepository {
 export class ProductRepository implements IProductRepository {
   private readonly productRepository = AppDataSource.getRepository(Product)
   async create(data: ICreateProductDTO): Promise<Product> {
-    console.log(data)
+
     const createdProduct = this.productRepository.create({
       nome: data.nome,
       preco: data.preco,
