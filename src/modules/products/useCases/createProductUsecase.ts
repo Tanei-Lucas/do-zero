@@ -3,7 +3,7 @@ import { ICreateProductDTO } from "../dtos/ICreateProductDTO";
 export class CreateProductUseCase {
   constructor() {}
 
-  async execute({ nome, preco }: ICreateProductDTO){
+  async execute({ nome, preco, fornecedorId }: ICreateProductDTO){
     const productRepository = new ProductRepository()
     const productAlreadyExists = await productRepository.findByName(nome);
 
@@ -11,7 +11,7 @@ export class CreateProductUseCase {
       throw new Error("Produto já existe!");
     }
     
-   const createdProduct = await productRepository.create({ nome, preco });
+   const createdProduct = await productRepository.create({ nome, preco, fornecedorId });
    return createdProduct
   }
   

@@ -12,7 +12,15 @@ export interface IProductRepository {
 export class ProductRepository implements IProductRepository {
   private readonly productRepository = AppDataSource.getRepository(Product)
   async create(data: ICreateProductDTO): Promise<Product> {
-    const createdProduct = this.productRepository.create(data)
+
+    const createdProduct = this.productRepository.create({
+      nome: data.nome,
+      preco: data.preco,
+
+      fornecedor:{
+        id:data.fornecedorId
+      }
+    })
     return await this.productRepository.save(createdProduct)
   }
   

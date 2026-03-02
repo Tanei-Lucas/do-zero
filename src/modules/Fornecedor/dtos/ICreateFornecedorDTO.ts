@@ -1,4 +1,4 @@
-export interface ICreateFornecedoresDTO{
+export interface ICreateFornecedorDTO{
     
         nome: string;
     

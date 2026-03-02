@@ -9,11 +9,11 @@ import { UpdateByProductUseCase } from "../useCases/UpdateByProductUseCase";
 export class ProductController {
     async create(request: Request, response: Response): Promise<Response> {
 
-        const { nome, preco } = request.body;
-
+        const { nome, preco, fornecedorId} = request.body;
+       
         const createProductUseCase = new CreateProductUseCase()
 
-        const createdProduct = await createProductUseCase.execute({ nome, preco });
+        const createdProduct = await createProductUseCase.execute({ nome, preco, fornecedorId });
 
         return response.status(201).json(createdProduct);
 
